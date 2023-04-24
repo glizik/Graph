@@ -15,6 +15,8 @@
 		042E69D829F66F3C00C0BD2F /* GraphSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E69D729F66F3C00C0BD2F /* GraphSwiftUITests.swift */; };
 		042E69DA29F66F3C00C0BD2F /* GraphSwiftUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E69D929F66F3C00C0BD2F /* GraphSwiftUITestsLaunchTests.swift */; };
 		042E69E729F67BB700C0BD2F /* VertexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E69E629F67BB700C0BD2F /* VertexView.swift */; };
+		042E69EB29F6927C00C0BD2F /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E69EA29F6927C00C0BD2F /* Vertex.swift */; };
+		042E69ED29F6932700C0BD2F /* SelectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E69EC29F6932700C0BD2F /* SelectionHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		042E69D729F66F3C00C0BD2F /* GraphSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphSwiftUITests.swift; sourceTree = "<group>"; };
 		042E69D929F66F3C00C0BD2F /* GraphSwiftUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphSwiftUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		042E69E629F67BB700C0BD2F /* VertexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexView.swift; sourceTree = "<group>"; };
+		042E69EA29F6927C00C0BD2F /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		042E69EC29F6932700C0BD2F /* SelectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 		042E69BB29F66F3900C0BD2F /* GraphSwift */ = {
 			isa = PBXGroup;
 			children = (
+				042E69E929F6926700C0BD2F /* Model */,
 				042E69BC29F66F3900C0BD2F /* GraphSwiftApp.swift */,
 				042E69BE29F66F3900C0BD2F /* ContentView.swift */,
 				042E69E829F67BC800C0BD2F /* View */,
@@ -136,6 +141,15 @@
 				042E69E629F67BB700C0BD2F /* VertexView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		042E69E929F6926700C0BD2F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				042E69EA29F6927C00C0BD2F /* Vertex.swift */,
+				042E69EC29F6932700C0BD2F /* SelectionHandler.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +282,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				042E69ED29F6932700C0BD2F /* SelectionHandler.swift in Sources */,
 				042E69BF29F66F3900C0BD2F /* ContentView.swift in Sources */,
+				042E69EB29F6927C00C0BD2F /* Vertex.swift in Sources */,
 				042E69BD29F66F3900C0BD2F /* GraphSwiftApp.swift in Sources */,
 				042E69E729F67BB700C0BD2F /* VertexView.swift in Sources */,
 			);
