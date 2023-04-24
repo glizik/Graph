@@ -14,6 +14,7 @@
 		042E69CE29F66F3C00C0BD2F /* GraphSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E69CD29F66F3C00C0BD2F /* GraphSwiftTests.swift */; };
 		042E69D829F66F3C00C0BD2F /* GraphSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E69D729F66F3C00C0BD2F /* GraphSwiftUITests.swift */; };
 		042E69DA29F66F3C00C0BD2F /* GraphSwiftUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E69D929F66F3C00C0BD2F /* GraphSwiftUITestsLaunchTests.swift */; };
+		042E69E729F67BB700C0BD2F /* VertexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E69E629F67BB700C0BD2F /* VertexView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		042E69D329F66F3C00C0BD2F /* GraphSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraphSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		042E69D729F66F3C00C0BD2F /* GraphSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphSwiftUITests.swift; sourceTree = "<group>"; };
 		042E69D929F66F3C00C0BD2F /* GraphSwiftUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphSwiftUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		042E69E629F67BB700C0BD2F /* VertexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				042E69BC29F66F3900C0BD2F /* GraphSwiftApp.swift */,
 				042E69BE29F66F3900C0BD2F /* ContentView.swift */,
+				042E69E829F67BC800C0BD2F /* View */,
 				042E69C029F66F3C00C0BD2F /* Assets.xcassets */,
 				042E69C229F66F3C00C0BD2F /* Preview Content */,
 			);
@@ -125,6 +128,14 @@
 				042E69D929F66F3C00C0BD2F /* GraphSwiftUITestsLaunchTests.swift */,
 			);
 			path = GraphSwiftUITests;
+			sourceTree = "<group>";
+		};
+		042E69E829F67BC800C0BD2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				042E69E629F67BB700C0BD2F /* VertexView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +270,7 @@
 			files = (
 				042E69BF29F66F3900C0BD2F /* ContentView.swift in Sources */,
 				042E69BD29F66F3900C0BD2F /* GraphSwiftApp.swift in Sources */,
+				042E69E729F67BB700C0BD2F /* VertexView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
