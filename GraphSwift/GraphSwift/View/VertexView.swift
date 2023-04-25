@@ -44,7 +44,7 @@ struct VertexView: View {
     }
     
     private struct DrawingConstants {
-        static let width = CGFloat(300)
+        static let width = CGFloat(100)
         
         static let selectedColor: Color = .red
         static let unSelectedColor: Color = .black
