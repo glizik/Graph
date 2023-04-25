@@ -9,7 +9,7 @@ import Foundation
 
 typealias EdgeID = UUID
 
-struct Edge: Identifiable {
+struct Edge: Identifiable, Equatable {
     var id = EdgeID()
     var start: VertexID
     var end: VertexID
