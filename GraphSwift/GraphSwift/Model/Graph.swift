@@ -31,11 +31,11 @@ class Graph: ObservableObject {
         }
         return root
     }
-    
+        
     func addVertex(_ vertex: Vertex) {
         vertices.append(vertex)
     }
-    
+        
     func updateVertexText(_ sourceVertex: Vertex, string: String) {
         var newVertex = sourceVertex
         newVertex.text = string
@@ -103,5 +103,31 @@ class Graph: ObservableObject {
             }
         }
         return nil
+    }
+    
+    // operator overload
+//    static func *(left: Graph, right: Vertex) -> Graph {
+//        let graph = Graph()
+//        graph.updateVertexText(graph.rootVertex(), string: "*")
+//        graph.addVertex(left)
+//        graph.connect(graph.rootVertex(), to: left)
+//        graph.addVertex(right)
+//        graph.connect(graph.rootVertex(), to: right)
+//        return graph
+//    }
+    
+    static func +(left: Graph, right: Vertex) -> Graph {
+        let leftGraph = Graph()
+        leftGraph.updateVertexText(leftGraph.rootVertex(), string: "a*b")
+        leftGraph.vertices.append(contentsOf: left.vertices)
+        let leftRoot = leftGraph.rootVertex()
+        
+        let newGraph = Graph()
+        newGraph.updateVertexText(newGraph.rootVertex(), string: "+")
+        
+        newGraph.connect(newGraph.rootVertex(), to: leftRoot)
+        newGraph.addVertex(right)
+        newGraph.connect(newGraph.rootVertex(), to: right)
+        return newGraph
     }
 }

@@ -23,7 +23,13 @@ extension Graph {
     static func sampleGraph2() -> Graph {
         let a = Vertex(position: CGPoint(x: -100, y: 200), text: "a")
         let b = Vertex(position: CGPoint(x: 100, y: 200), text: "b")
-        return a + b
+        return a * b
+    }
+
+    static func sampleGraph3() -> Graph {
+        let a_mul_b = sampleGraph2()
+        let c = Vertex(position: CGPoint(x: 50, y: 100), text: "c")
+        return a_mul_b + c
     }
 
 }

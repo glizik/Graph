@@ -11,7 +11,7 @@ import SwiftUI
 struct GraphSwiftApp: App {
     var body: some Scene {
         WindowGroup {
-            GraphView(selection: SelectionHandler(), graph: Graph.sampleGraph2())
+            GraphView(selection: SelectionHandler(), graph: Graph.sampleGraph3())
         }
     }
 }
