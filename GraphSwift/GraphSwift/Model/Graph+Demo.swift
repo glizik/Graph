@@ -19,4 +19,11 @@ extension Graph {
         }
         return graph
     }
+    
+    static func sampleGraph2() -> Graph {
+        let a = Vertex(position: CGPoint(x: -100, y: 200), text: "a")
+        let b = Vertex(position: CGPoint(x: 100, y: 200), text: "b")
+        return a + b
+    }
+
 }

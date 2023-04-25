@@ -17,4 +17,24 @@ struct Vertex: CustomStringConvertible {
     var description: String {
         text
     }
+    
+    static func *(left: Vertex, right: Vertex) -> Graph {
+        let graph = Graph()
+        graph.updateVertexText(graph.rootVertex(), string: "*")
+        graph.addVertex(left)
+        graph.connect(graph.rootVertex(), to: left)
+        graph.addVertex(right)
+        graph.connect(graph.rootVertex(), to: right)
+        return graph
+    }
+    
+    static func +(left: Vertex, right: Vertex) -> Graph {
+        let graph = Graph()
+        graph.updateVertexText(graph.rootVertex(), string: "+")
+        graph.addVertex(left)
+        graph.connect(graph.rootVertex(), to: left)
+        graph.addVertex(right)
+        graph.connect(graph.rootVertex(), to: right)
+        return graph
+    }
 }
