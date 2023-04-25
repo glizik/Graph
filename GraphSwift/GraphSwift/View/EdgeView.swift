@@ -1,8 +1,8 @@
 //
-//  EdgeView.swift
+//  Edge.swift
 //  GraphSwift
 //
-//  Created by Mac on 2023. 04. 24..
+//  Created by Mac on 2023. 04. 25..
 //
 
 import SwiftUI
@@ -32,6 +32,17 @@ struct EdgeView: Shape {
 
 struct EdgeView_Previews: PreviewProvider {
     static var previews: some View {
-        EdgeView()
+        let edge1 = Line(
+          id: UUID(),
+          start: CGPoint(x: -100, y: -100),
+          end: CGPoint(x: 100, y: 100))
+        let edge2 = Line(
+          id: UUID(),
+          start: CGPoint(x: 100, y: -100),
+          end: CGPoint(x: -100, y: 100))
+        return ZStack {
+          EdgeView(edge: edge1).stroke(lineWidth: 4)
+          EdgeView(edge: edge2).stroke(Color.blue, lineWidth: 2)
+        }
     }
 }

@@ -11,6 +11,7 @@ typealias VertexID = UUID
 
 struct Vertex: CustomStringConvertible {
     var id: VertexID = VertexID()
+    var position: CGPoint = .zero
     var text: String = ""
     
     var description: String {
