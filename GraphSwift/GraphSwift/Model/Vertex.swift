@@ -13,6 +13,7 @@ struct Vertex: CustomStringConvertible {
     var id: VertexID = VertexID()
     var position: CGPoint = .zero
     var text: String = ""
+    var isOperator = false
     
     var description: String {
         text
@@ -21,6 +22,7 @@ struct Vertex: CustomStringConvertible {
     static func *(left: Vertex, right: Vertex) -> Graph {
         let graph = Graph()
         graph.updateVertexText(graph.rootVertex(), string: "*")
+        graph.handleAsOperator(graph.rootVertex())
         graph.addVertex(left)
         graph.connect(graph.rootVertex(), to: left)
         graph.addVertex(right)
@@ -31,6 +33,7 @@ struct Vertex: CustomStringConvertible {
     static func +(left: Vertex, right: Vertex) -> Graph {
         let graph = Graph()
         graph.updateVertexText(graph.rootVertex(), string: "+")
+        graph.handleAsOperator(graph.rootVertex())
         graph.addVertex(left)
         graph.connect(graph.rootVertex(), to: left)
         graph.addVertex(right)

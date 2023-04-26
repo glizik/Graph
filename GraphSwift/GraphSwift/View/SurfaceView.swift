@@ -36,6 +36,7 @@ struct SurfaceView: View {
                     Rectangle().fill(Color.gray)
                     GraphView(selection: self.selection, graph: self.graph)
                     //<-- insert scale here later
+                        .scaleEffect(self.zoomScale)
                     // 4
                         .offset(
                             x: self.portalPosition.x + self.dragOffset.width,
@@ -44,15 +45,31 @@ struct SurfaceView: View {
                 }
                 //<-- add drag gesture later
                 .gesture(DragGesture()
-                .onChanged { value in
-                  self.processDragChange(value, containerSize: geometry.size)
+                    .onChanged { value in
+                        self.processDragChange(value, containerSize: geometry.size)
+                    }
+                    .onEnded { value in
+                        self.processDragEnd(value)
+                    })
+                //<-- add magnification gesture later
+                .gesture(MagnificationGesture()
+                  .onChanged { value in
+                    // 1
+                    if self.initialZoomScale == nil {
+                      self.initialZoomScale = self.zoomScale
+                      self.initialPortalPosition = self.portalPosition
+                    }
+                    self.processScaleChange(value)
                 }
                 .onEnded { value in
-                  self.processDragEnd(value)
+                  // 2
+                  self.processScaleChange(value)
+                  self.initialZoomScale = nil
+                  self.initialPortalPosition  = nil
                 })
-                //<-- add magnification gesture later
             }
-        }    }
+        }
+    }
 }
 
 struct SurfaceView_Previews: PreviewProvider {
@@ -101,44 +118,69 @@ private extension SurfaceView {
     }
     
     func processDragChange(_ value: DragGesture.Value, containerSize: CGSize) {
-      // 1
-      if !isDragging {
-        isDragging = true
-        
-        if let vertex = hitTest(
-          point: value.startLocation,
-          parent: containerSize
-        ) {
-          isDraggingGraph = false
-          selection.selectVertex(vertex)
-          // 2
-          selection.startDragging(graph)
-        } else {
-          isDraggingGraph = true
+        // 1
+        if !isDragging {
+            isDragging = true
+            
+            if let vertex = hitTest(
+                point: value.startLocation,
+                parent: containerSize
+            ) {
+                isDraggingGraph = false
+                selection.selectVertex(vertex)
+                // 2
+                selection.startDragging(graph)
+            } else {
+                isDraggingGraph = true
+            }
         }
-      }
-      
-      // 3
-      if isDraggingGraph {
-        dragOffset = value.translation
-      } else {
-        processVertexTranslation(value.translation)
-      }
+        
+        // 3
+        if isDraggingGraph {
+            dragOffset = value.translation
+        } else {
+            processVertexTranslation(value.translation)
+        }
     }
-
+    
     // 4
     func processDragEnd(_ value: DragGesture.Value) {
-      isDragging = false
-      dragOffset = .zero
-      
-      if isDraggingGraph {
-        portalPosition = CGPoint(
-          x: portalPosition.x + value.translation.width,
-          y: portalPosition.y + value.translation.height)
-      } else {
-        processVertexTranslation(value.translation)
-        selection.stopDragging(graph)
-      }
+        isDragging = false
+        dragOffset = .zero
+        
+        if isDraggingGraph {
+            portalPosition = CGPoint(
+                x: portalPosition.x + value.translation.width,
+                y: portalPosition.y + value.translation.height)
+        } else {
+            processVertexTranslation(value.translation)
+            selection.stopDragging(graph)
+        }
     }
-
+    
+    // 1
+    func scaledOffset(_ scale: CGFloat, initialValue: CGPoint) -> CGPoint {
+        let newx = initialValue.x*scale
+        let newy = initialValue.y*scale
+        return CGPoint(x: newx, y: newy)
+    }
+    
+    func clampedScale(_ scale: CGFloat, initialValue: CGFloat?)
+    -> (scale: CGFloat, didClamp: Bool) {
+        let minScale: CGFloat = 0.1
+        let maxScale: CGFloat = 2.0
+        let raw = scale.magnitude * (initialValue ?? maxScale)
+        let value =  max(minScale, min(maxScale, raw))
+        let didClamp = raw != value
+        return (value, didClamp)
+    }
+    
+    func processScaleChange(_ value: CGFloat) {
+        let clamped = clampedScale(value, initialValue: initialZoomScale)
+        zoomScale = clamped.scale
+        if !clamped.didClamp,
+           let point = initialPortalPosition {
+            portalPosition = scaledOffset(value, initialValue: point)
+        }
+    }
 }

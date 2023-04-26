@@ -53,6 +53,12 @@ class Graph: ObservableObject, CustomStringConvertible {
         self.name = name
     }
     
+    func handleAsOperator(_ sourceVertex: Vertex) {
+        var newVertex = sourceVertex
+        newVertex.isOperator = true
+        replace(sourceVertex, with: newVertex)
+    }
+    
     func replace(_ vertex: Vertex, with replacement: Vertex) {
         var newSet = vertices.filter { $0.id != vertex.id }
         newSet.append(replacement)
@@ -138,6 +144,7 @@ class Graph: ObservableObject, CustomStringConvertible {
         let newGraph = Graph()
         newGraph.updateGraphName("a*b + c")
         newGraph.updateVertexText(newGraph.rootVertex(), string: "+")
+        newGraph.handleAsOperator(newGraph.rootVertex())
         newGraph.vertices.append(contentsOf: leftGraph.vertices)
         newGraph.edges = leftGraph.edges
         newGraph.connect(newGraph.rootVertex(), to: leftRoot)

@@ -11,6 +11,7 @@ extension Graph {
     static func sampleGraph() -> Graph {
         let graph = Graph()
         graph.updateVertexText(graph.rootVertex(), string: "*")
+        graph.handleAsOperator(graph.rootVertex())
         let child1 = Vertex(position: CGPoint(x: -100, y: 200), text: "a")
         let child2 = Vertex(position: CGPoint(x: 100, y: 200), text: "b")
         [child1, child2].forEach {

@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+typealias AnimatablePoint = AnimatablePair<CGFloat, CGFloat>
+typealias AnimatableCorners = AnimatablePair<AnimatablePoint, AnimatablePoint>
+
 struct EdgeView: Shape {
     var startx: CGFloat = 0
     var starty: CGFloat = 0
@@ -27,6 +30,19 @@ struct EdgeView: Shape {
       linkPath.addLine(to: CGPoint(x: endx, y:endy)
         .alignCenterInParent(rect.size))
       return linkPath
+    }
+    
+    var animatableData: AnimatableCorners {
+      get { AnimatablePair(
+        AnimatablePair(startx, starty),
+        AnimatablePair(endx, endy))
+      }
+      set {
+        startx = newValue.first.first
+        starty = newValue.first.second
+        endx = newValue.second.first
+        endy = newValue.second.second
+      }
     }
 }
 

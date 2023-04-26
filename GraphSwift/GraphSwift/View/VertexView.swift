@@ -13,18 +13,36 @@ struct VertexView: View {
     @ObservedObject var selection: SelectionHandler
     
     var body: some View {
-        Ellipse()
-          .fill(Color.green)
-          .overlay(Ellipse()
-            .stroke(strokeColor(),
-                lineWidth: lineWidth()))
-          .overlay(Text(String(describing: vertex))
-            .multilineTextAlignment(.center)
-            .padding(EdgeInsets(top: 0,
-                                leading: DrawingConstants.leadingPadding,
-                                bottom: 0,
-                                trailing: DrawingConstants.trailingPadding)))
-          .frame(width: DrawingConstants.width, height: DrawingConstants.width, alignment: .center)
+        if vertex.isOperator {
+            Ellipse()
+              .fill(Color.green)
+              .overlay(Ellipse()
+                .stroke(strokeColor(),
+                    lineWidth: lineWidth()))
+              .overlay(Text(String(describing: vertex))
+                .multilineTextAlignment(.center)
+                .padding(EdgeInsets(top: 0,
+                                    leading: DrawingConstants.leadingPadding,
+                                    bottom: 0,
+                                    trailing: DrawingConstants.trailingPadding)))
+              .frame(width: DrawingConstants.operatorWidth,
+                     height: DrawingConstants.operatorWidth,
+                     alignment: .center)
+        } else {
+            Rectangle()
+                .fill(Color.white)
+                .overlay(Rectangle()
+                    .stroke(strokeColor(), lineWidth: lineWidth()))
+                .overlay(Text(String(describing: vertex))
+                    .multilineTextAlignment(.center)
+                    .padding(EdgeInsets(top: 0,
+                                        leading: DrawingConstants.leadingPadding,
+                                        bottom: 0,
+                                        trailing: DrawingConstants.trailingPadding)))
+                .frame(width: DrawingConstants.width,
+                       height: DrawingConstants.height,
+                       alignment: .center)
+        }
     }
     
     // MARK: -- private
@@ -44,7 +62,10 @@ struct VertexView: View {
     }
     
     private struct DrawingConstants {
+        static let operatorWidth = CGFloat(100)
+        
         static let width = CGFloat(100)
+        static let height = CGFloat(50)
         
         static let selectedColor: Color = .red
         static let unSelectedColor: Color = .black
