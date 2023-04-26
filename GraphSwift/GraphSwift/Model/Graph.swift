@@ -7,8 +7,15 @@
 
 import Foundation
 
-class Graph: ObservableObject {
+class Graph: ObservableObject, CustomStringConvertible {
+    var description: String {
+        let vertices = vertices.map { $0.text }
+        let edges = edges.map { "\(vertexWithID($0.start)!) -> \(vertexWithID($0.end)!)" }
+        return "\(name) graph vertices: \(vertices) \n\tedges:\t\(edges.joined(separator: "\n\t\t\t"))"
+    }
+    
     let rootVertexID: VertexID
+    var name = "root"
     @Published var vertices: [Vertex] = [] {
         didSet {
             print("Number of vertices: \(vertices.count)")
@@ -42,6 +49,10 @@ class Graph: ObservableObject {
         replace(sourceVertex, with: newVertex)
     }
     
+    func updateGraphName(_ name: String) {
+        self.name = name
+    }
+    
     func replace(_ vertex: Vertex, with replacement: Vertex) {
         var newSet = vertices.filter { $0.id != vertex.id }
         newSet.append(replacement)
@@ -49,7 +60,7 @@ class Graph: ObservableObject {
     }
     
     func connect(_ parent: Vertex, to child: Vertex) {
-        let newedge = Edge(start: parent.id, end: child.id)
+        let newedge = Edge(start: child.id, end: parent.id)
         let exists = edges.contains(where: { edge in
             return newedge == edge
         })
@@ -84,9 +95,9 @@ class Graph: ObservableObject {
     }
     
     func locateParent(_ vertex: Vertex) -> Vertex? {
-        let parentEdges = edges.filter { $0.end == vertex.id }
+        let parentEdges = edges.filter { $0.start == vertex.id }
         if let parentEdge = parentEdges.first,
-           let parentVertex = vertexWithID(parentEdge.start) {
+           let parentVertex = vertexWithID(parentEdge.end) {
             return parentVertex
         }
         return nil
@@ -120,14 +131,19 @@ class Graph: ObservableObject {
         let leftGraph = Graph()
         leftGraph.updateVertexText(leftGraph.rootVertex(), string: "a*b")
         leftGraph.vertices.append(contentsOf: left.vertices)
+        leftGraph.edges = left.edges
+        leftGraph.connect(leftGraph.rootVertex(), to: left.rootVertex())
         let leftRoot = leftGraph.rootVertex()
         
         let newGraph = Graph()
+        newGraph.updateGraphName("a*b + c")
         newGraph.updateVertexText(newGraph.rootVertex(), string: "+")
-        
+        newGraph.vertices.append(contentsOf: leftGraph.vertices)
+        newGraph.edges = leftGraph.edges
         newGraph.connect(newGraph.rootVertex(), to: leftRoot)
         newGraph.addVertex(right)
         newGraph.connect(newGraph.rootVertex(), to: right)
+        print(newGraph)
         return newGraph
     }
 }
