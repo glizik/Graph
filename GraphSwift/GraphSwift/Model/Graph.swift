@@ -146,4 +146,21 @@ class Graph: ObservableObject, CustomStringConvertible {
         print(newGraph)
         return newGraph
     }
+    
+    // for dragging
+    func processNodeTranslation(_ translation: CGSize, vertices: [DragInfo]) {
+        vertices.forEach { draginfo in
+            if let vertex = vertexWithID(draginfo.id) {
+                let nextPosition = draginfo.originalPosition.translatedBy(x: translation.width, y: translation.height)
+                self.positionVertex(vertex, position: nextPosition)
+            }
+        }
+    }
+    
+    func positionVertex(_ vertex: Vertex, position: CGPoint) {
+      var movedVertex = vertex
+      movedVertex.position = position
+      replace(vertex, with: movedVertex)
+      rebuildLinks()
+    }
 }

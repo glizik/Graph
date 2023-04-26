@@ -13,4 +13,14 @@ extension CGPoint {
         let y = parent.height/2 + self.y
         return CGPoint(x: x, y: y)
     }
+    
+    func scaledFrom(_ factor: CGFloat) -> CGPoint {
+      return CGPoint(
+        x: self.x * factor,
+        y: self.y * factor)
+    }
+    
+    func translatedBy(x: CGFloat, y: CGFloat) -> CGPoint {
+      return CGPoint(x: self.x + x, y: self.y + y)
+    }
 }

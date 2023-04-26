@@ -25,6 +25,8 @@
 		042E69FE29F7EBD200C0BD2F /* EdgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E69FD29F7EBD200C0BD2F /* EdgeView.swift */; };
 		042E6A0029F7FBAE00C0BD2F /* Graph+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E69FF29F7FBAE00C0BD2F /* Graph+Demo.swift */; };
 		042E6A0229F80C8B00C0BD2F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E6A0129F80C8B00C0BD2F /* ListView.swift */; };
+		042E6A0429F9488C00C0BD2F /* SurfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E6A0329F9488C00C0BD2F /* SurfaceView.swift */; };
+		042E6A0629F94F7C00C0BD2F /* CGSize+Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E6A0529F94F7C00C0BD2F /* CGSize+Help.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		042E69FD29F7EBD200C0BD2F /* EdgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeView.swift; sourceTree = "<group>"; };
 		042E69FF29F7FBAE00C0BD2F /* Graph+Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph+Demo.swift"; sourceTree = "<group>"; };
 		042E6A0129F80C8B00C0BD2F /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		042E6A0329F9488C00C0BD2F /* SurfaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfaceView.swift; sourceTree = "<group>"; };
+		042E6A0529F94F7C00C0BD2F /* CGSize+Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Help.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 				042E69FD29F7EBD200C0BD2F /* EdgeView.swift */,
 				042E69F729F7E88100C0BD2F /* EdgesView.swift */,
 				042E69F929F7EA3100C0BD2F /* GraphView.swift */,
+				042E6A0329F9488C00C0BD2F /* SurfaceView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				042E69F329F7D2F600C0BD2F /* CGPoint+Help.swift */,
+				042E6A0529F94F7C00C0BD2F /* CGSize+Help.swift */,
 			);
 			path = Help;
 			sourceTree = "<group>";
@@ -320,6 +326,8 @@
 				042E69F629F7D5AB00C0BD2F /* VerticesView.swift in Sources */,
 				042E69FA29F7EA3100C0BD2F /* GraphView.swift in Sources */,
 				042E69FE29F7EBD200C0BD2F /* EdgeView.swift in Sources */,
+				042E6A0429F9488C00C0BD2F /* SurfaceView.swift in Sources */,
+				042E6A0629F94F7C00C0BD2F /* CGSize+Help.swift in Sources */,
 				042E69F129F6C10D00C0BD2F /* Edge.swift in Sources */,
 				042E69EB29F6927C00C0BD2F /* Vertex.swift in Sources */,
 				042E69F429F7D2F600C0BD2F /* CGPoint+Help.swift in Sources */,

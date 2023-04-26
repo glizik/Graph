@@ -14,7 +14,6 @@ struct GraphView: View {
 
     var body: some View {
         ZStack {
-          Rectangle().fill(Color.gray)
           EdgesView(edges: $graph.links)
           VerticesView(selection: selection, vertices: $graph.vertices)
         }
