@@ -1,5 +1,5 @@
 //
-//  NodeMapView.swift
+//  VerticesView.swift
 //  GraphSwift
 //
 //  Created by Mac on 2023. 04. 25..

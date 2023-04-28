@@ -40,4 +40,13 @@ class SelectionHandler: ObservableObject {
     func stopDragging(_ graph: Graph) {
       draggingVertices = []
     }
+    
+    // for Editing
+    func onlySelectedVertex(in graph: Graph) -> Vertex? {
+      let selectedVertices = self.selectedVertices(in: graph)
+      if selectedVertices.count == 1 {
+        return selectedVertices.first
+      }
+      return nil
+    }
 }

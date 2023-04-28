@@ -28,7 +28,15 @@ struct SurfaceView: View {
             Text("drag offset = w:\(dragOffset.width), h:\(dragOffset.height)")
             Text("portal offset = x:\(portalPosition.x), y:\(portalPosition.y)")
             Text("zoom = \(zoomScale)")
-            //<-- insert TextField here
+
+            TextField("", text: $selection.editingText, onCommit: {
+                if let vertex = self.selection.onlySelectedVertex(in: self.graph) {
+                    let editedText = self.self.selection.editingText
+                    print(editedText)
+                    self.graph.updateVertexText(vertex, string: editedText)
+                }
+            })
+            
             // 2
             GeometryReader { geometry in
                 // 3
@@ -53,20 +61,20 @@ struct SurfaceView: View {
                     })
                 //<-- add magnification gesture later
                 .gesture(MagnificationGesture()
-                  .onChanged { value in
-                    // 1
-                    if self.initialZoomScale == nil {
-                      self.initialZoomScale = self.zoomScale
-                      self.initialPortalPosition = self.portalPosition
+                    .onChanged { value in
+                        // 1
+                        if self.initialZoomScale == nil {
+                            self.initialZoomScale = self.zoomScale
+                            self.initialPortalPosition = self.portalPosition
+                        }
+                        self.processScaleChange(value)
                     }
-                    self.processScaleChange(value)
-                }
-                .onEnded { value in
-                  // 2
-                  self.processScaleChange(value)
-                  self.initialZoomScale = nil
-                  self.initialPortalPosition  = nil
-                })
+                    .onEnded { value in
+                        // 2
+                        self.processScaleChange(value)
+                        self.initialZoomScale = nil
+                        self.initialPortalPosition  = nil
+                    })
             }
         }
     }
@@ -112,7 +120,7 @@ private extension SurfaceView {
     func processVertexTranslation(_ translation: CGSize) {
         guard !selection.draggingVertices.isEmpty else { return }
         let scaledTranslation = translation.scaledDownTo(zoomScale)
-        graph.processNodeTranslation(
+        graph.processVertexTranslation(
             scaledTranslation,
             vertices: selection.draggingVertices)
     }

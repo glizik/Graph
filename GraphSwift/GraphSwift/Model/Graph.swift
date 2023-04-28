@@ -155,7 +155,7 @@ class Graph: ObservableObject, CustomStringConvertible {
     }
     
     // for dragging
-    func processNodeTranslation(_ translation: CGSize, vertices: [DragInfo]) {
+    func processVertexTranslation(_ translation: CGSize, vertices: [DragInfo]) {
         vertices.forEach { draginfo in
             if let vertex = vertexWithID(draginfo.id) {
                 let nextPosition = draginfo.originalPosition.translatedBy(x: translation.width, y: translation.height)
